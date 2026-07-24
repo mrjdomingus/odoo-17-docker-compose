@@ -12,7 +12,7 @@ services:
 
   odoo19:
     image: odoo:19
-    user: odoo
+    user: root
     depends_on:
       - db
     ports:
