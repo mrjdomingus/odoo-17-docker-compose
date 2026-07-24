@@ -52,4 +52,4 @@ else
   docker-compose -f $DESTINATION/docker-compose.yml up -d
 fi
 
-echo "Odoo started at http://localhost:$PORT | Master Password: minhng.info | Live chat port: $CHAT"
+echo "Odoo started at http://localhost:$PORT | Master Password: mag1ster | Live chat port: $CHAT"

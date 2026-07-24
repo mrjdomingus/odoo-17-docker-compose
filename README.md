@@ -1,22 +1,22 @@
-# Installing Odoo 17.0 with one command (Supports multiple Odoo instances on one server).
+# Installing Odoo 19.0 with one command (Supports multiple Odoo instances on one server).
 
 ## Quick Installation
 
-Install [docker](https://docs.docker.com/get-docker/) and [docker-compose](https://docs.docker.com/compose/install/) yourself, then run the following to set up first Odoo instance @ `localhost:10017` (default master password: `minhng.info`):
+Install [docker](https://docs.docker.com/get-docker/) and [docker-compose](https://docs.docker.com/compose/install/) yourself, then run the following to set up first Odoo instance @ `localhost:10019` (default master password: `mag1ster`):
 
 ``` bash
-curl -s https://raw.githubusercontent.com/minhng92/odoo-17-docker-compose/master/run.sh | bash -s odoo-one 10017 20017
+curl -s https://raw.githubusercontent.com/minhng92/odoo-17-docker-compose/master/run.sh | bash -s odoo-one 10019 20019
 ```
-and/or run the following to set up another Odoo instance @ `localhost:11017` (default master password: `minhng.info`):
+and/or run the following to set up another Odoo instance @ `localhost:11019` (default master password: `mag1ster`):
 
 ``` bash
-curl -s https://raw.githubusercontent.com/minhng92/odoo-17-docker-compose/master/run.sh | bash -s odoo-two 11017 21017
+curl -s https://raw.githubusercontent.com/minhng92/odoo-17-docker-compose/master/run.sh | bash -s odoo-two 11019 21019
 ```
 
 Some arguments:
 * First argument (**odoo-one**): Odoo deploy folder
-* Second argument (**10017**): Odoo port
-* Third argument (**20017**): live chat port
+* Second argument (**10019**): Odoo port
+* Third argument (**20019**): live chat port
 
 If `curl` is not found, install it:
 
@@ -32,7 +32,7 @@ Start the container:
 ``` sh
 docker-compose up
 ```
-Then open `localhost:10017` to access Odoo 17.
+Then open `localhost:10019` to access Odoo 19.
 
 - **If you get any permission issues**, change the folder permission to make sure that the container is able to access the directory:
 
@@ -42,11 +42,11 @@ $ sudo chmod -R 777 etc
 $ sudo chmod -R 777 postgresql
 ```
 
-- If you want to start the server with a different port, change **10017** to another value in **docker-compose.yml** inside the parent dir:
+- If you want to start the server with a different port, change **10019** to another value in **docker-compose.yml** inside the parent dir:
 
 ```
 ports:
- - "10017:8069"
+ - "10019:8069"
 ```
 
 - To run Odoo container in detached mode (be able to close terminal without stopping Odoo):
@@ -79,7 +79,7 @@ The **addons/** folder contains custom addons. Just put your custom addons if yo
 
 * To change Odoo configuration, edit file: **etc/odoo.conf**.
 * Log file: **etc/odoo-server.log**
-* Default database password (**admin_passwd**) is `minhng.info`, please change it @ [etc/odoo.conf#L60](/etc/odoo.conf#L60)
+* Default database password (**admin_passwd**) is `mag1ster`, please change it @ [etc/odoo.conf#L60](/etc/odoo.conf#L60)
 
 ## Odoo container management
 
@@ -103,7 +103,7 @@ docker-compose down
 
 ## Live chat
 
-In [docker-compose.yml#L21](docker-compose.yml#L21), we exposed port **20017** for live-chat on host.
+In [docker-compose.yml#L21](docker-compose.yml#L21), we exposed port **20019** for live-chat on host.
 
 Configuring **nginx** to activate live chat feature (in production):
 
@@ -112,7 +112,7 @@ Configuring **nginx** to activate live chat feature (in production):
 server {
     #...
     location /longpolling/ {
-        proxy_pass http://0.0.0.0:20017/longpolling/;
+        proxy_pass http://0.0.0.0:20019/longpolling/;
     }
     #...
 }
@@ -121,21 +121,5 @@ server {
 
 ## docker-compose.yml
 
-* odoo:17
-* postgres:16
-
-## Odoo 17.0 screenshots after successful installation.
-
-<img src="screenshots/odoo-17-welcome-screenshot.png" width="50%">
-
-<img src="screenshots/odoo-17-apps-screenshot.png" width="100%">
-
-<img src="screenshots/odoo-17-sales-screen.png" width="100%">
-
-<img src="screenshots/odoo-17-product-form.png" width="100%">
-
-## ☕ Buy Me a Coffee
-
-If you find this project helpful, consider buying me a coffee to support my work!
-
-<a href="https://buymeacoffee.com/minhng.info" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+* odoo:19
+* postgres:18

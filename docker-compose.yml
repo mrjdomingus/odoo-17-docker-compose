@@ -16,8 +16,8 @@ services:
     depends_on:
       - db
     ports:
-      - "10017:8069"
-      - "20017:8072" # live chat
+      - "10019:8069"
+      - "20019:8072" # live chat
     tty: true
     command: --
     environment:
@@ -33,7 +33,7 @@ services:
     restart: always             # run as a service
     
   pgadmin4:
-    image: dpage/pgadmin4:9.14
+    image: dpage/pgadmin4:latest
     hostname: pgadmin
     depends_on:
       - db
