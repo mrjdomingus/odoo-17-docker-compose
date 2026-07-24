@@ -30,6 +30,7 @@ services:
       - ./entrypoint.sh:/entrypoint.sh
       - ./addons:/mnt/extra-addons
       - ./etc:/etc/odoo
+      - ./odoo_data:/var/lib/odoo
     restart: always             # run as a service
     
   pgadmin4:

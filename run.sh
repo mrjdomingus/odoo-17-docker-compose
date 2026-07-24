@@ -10,6 +10,10 @@ rm -rf $DESTINATION/.git
 # Create PostgreSQL directory
 mkdir -p $DESTINATION/postgresql
 
+# Create Odoo data directory
+mkdir -p $DESTINATION/odoo_data
+
+
 # Change ownership to current user and set restrictive permissions for security
 sudo chown -R $USER:$USER $DESTINATION
 sudo chmod -R 700 $DESTINATION  # Only the user has access
