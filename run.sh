@@ -40,6 +40,7 @@ fi
 # Change ownership to current user and set restrictive permissions for security
 sudo chown -R $USER:$USER $DESTINATION
 sudo chmod -R 700 $DESTINATION  # Only the user has access
+echo "Change owner of folder $DESTINATION completed..."
 
 # Check if running on macOS
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -53,6 +54,7 @@ else
   fi
   sudo sysctl -p
 fi
+echo "Check for running on macOS completed..."
 
 # Set ports in docker-compose.yml
 # Update docker-compose configuration
@@ -65,12 +67,15 @@ else
   sed -i 's/10017/'$PORT'/g' $DESTINATION/docker-compose.yml
   sed -i 's/20017/'$CHAT'/g' $DESTINATION/docker-compose.yml
 fi
+echo "Set ports in docker-compose.yml completed..."
 
 # Set file and directory permissions after installation
 find $DESTINATION -type f -exec chmod 644 {} \;
 find $DESTINATION -type d -exec chmod 755 {} \;
+echo "Set file and directory permissions after installation completed..."
 
 chmod +x $DESTINATION/entrypoint.sh
+echo "Setting $DESTINATION/entrypoint.sh to executable completed..."
 
 # Run Odoo
 if ! is_present="$(type -p "docker-compose")" || [[ -z $is_present ]]; then
