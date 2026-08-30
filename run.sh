@@ -20,18 +20,21 @@ mkdir -p $DESTINATION/odoo_data
 if [ -f ./addons_enterprise_odoo_19.7z ]; then
     # Extract to a temp directory
     7z x ./addons_enterprise_odoo_19.7z -o$DESTINATION/temp
+    echo "Unzip of files to $DESTINATION/temp completed..."
     
     # Move contents to addons folder
     mkdir -p $DESTINATION/enterprise_addons
     mv $DESTINATION/temp/addons_enterprise_odoo_19/* $DESTINATION/enterprise_addons/
+    echo "Move of files from temp folder to folder $DESTINATION/enterprise_addons/ completed..."
 
     # Change ownership of enterprise_addons to the requested owner/group
     sudo chown -R $OWNER:$OWNER $DESTINATION/enterprise_addons
+    echo "Ownership change of folder $DESTINATION/enterprise_addons completed..."
     
     # Clean up
-    rm -rf temp
+    rm -rf $DESTINATION/temp
 else
-    echo "Warning: ../addons_enterprise_odoo_19.7z not found"
+    echo "Warning: ./addons_enterprise_odoo_19.7z not found"
 fi
 
 # Change ownership to current user and set restrictive permissions for security
