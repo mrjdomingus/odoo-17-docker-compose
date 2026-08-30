@@ -13,6 +13,20 @@ mkdir -p $DESTINATION/postgresql
 # Create Odoo data directory
 mkdir -p $DESTINATION/odoo_data
 
+# Check if the file exists before extracting
+if [ -f ../addons_enterprise_odoo_19.7z ]; then
+    # Extract to a temp directory
+    7z x ../addons_enterprise_odoo_19.7z -o./temp
+    
+    # Move contents to addons folder
+    mkdir -p enterprise_addons
+    mv temp/addons_enterprise_odoo_19/* enterprise_addons/
+    
+    # Clean up
+    rm -rf temp
+else
+    echo "Warning: ../addons_enterprise_odoo_19.7z not found"
+fi
 
 # Change ownership to current user and set restrictive permissions for security
 sudo chown -R $USER:$USER $DESTINATION
