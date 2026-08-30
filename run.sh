@@ -2,6 +2,7 @@
 DESTINATION=$1
 PORT=$2
 CHAT=$3
+OWNER=${4:-$(id -un)}
 
 # Clone Odoo directory
 git clone --branch odoo19 --depth=1 https://github.com/mrjdomingus/odoo-17-docker-compose $DESTINATION
@@ -22,8 +23,8 @@ if [ -f ../addons_enterprise_odoo_19.7z ]; then
     mkdir -p enterprise_addons
     mv temp/addons_enterprise_odoo_19/* enterprise_addons/
 
-    # Change ownership of enterprise_addons to match the enclosing folder
-    sudo chown --reference=. enterprise_addons
+    # Change ownership of enterprise_addons to the requested owner/group
+    sudo chown -R $OWNER:$OWNER enterprise_addons
     
     # Clean up
     rm -rf temp
