@@ -17,14 +17,14 @@ mkdir -p $DESTINATION/odoo_data
 # Check if the 7zip file with enterprise addons exists before extracting. If so, unzip it in folder enterprise_addons
 if [ -f ../addons_enterprise_odoo_19.7z ]; then
     # Extract to a temp directory
-    7z x ../addons_enterprise_odoo_19.7z -o./temp
+    7z x ../addons_enterprise_odoo_19.7z -o$DESTINATION/temp
     
     # Move contents to addons folder
-    mkdir -p enterprise_addons
-    mv temp/addons_enterprise_odoo_19/* enterprise_addons/
+    mkdir -p $DESTINATION/enterprise_addons
+    mv $DESTINATION/temp/addons_enterprise_odoo_19/* enterprise_addons/
 
     # Change ownership of enterprise_addons to the requested owner/group
-    sudo chown -R $OWNER:$OWNER enterprise_addons
+    sudo chown -R $OWNER:$OWNER $DESTINATION/enterprise_addons
     
     # Clean up
     rm -rf temp
