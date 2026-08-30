@@ -21,6 +21,9 @@ if [ -f ../addons_enterprise_odoo_19.7z ]; then
     # Move contents to addons folder
     mkdir -p enterprise_addons
     mv temp/addons_enterprise_odoo_19/* enterprise_addons/
+
+    # Change ownership of enterprise_addons to match the enclosing folder
+    sudo chown --reference=. enterprise_addons
     
     # Clean up
     rm -rf temp
