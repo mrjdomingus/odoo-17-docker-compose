@@ -82,11 +82,11 @@ echo "Setting $DESTINATION/entrypoint.sh to executable completed..."
 if ! is_present="$(type -p "docker-compose")" || [[ -z $is_present ]]; then
   docker compose -f $DESTINATION/docker-compose.yml up -d
   # Fix missing package
-  docker compose exec odoo19 apt install python3-xmlsec
+  docker compose -f $DESTINATION/docker-compose.yml exec odoo19 apt install python3-xmlsec
 else
   docker-compose -f $DESTINATION/docker-compose.yml up -d
   # Fix missing package
-  docker-compose exec odoo19 apt install python3-xmlsec
+  docker-compose -f $DESTINATION/docker-compose.yml exec odoo19 apt install python3-xmlsec
 fi
 
 echo "Odoo started at http://localhost:$PORT | Master Password: mag1ster | Live chat port: $CHAT"
