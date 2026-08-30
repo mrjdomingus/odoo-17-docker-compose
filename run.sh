@@ -23,7 +23,7 @@ if [ -f ./addons_enterprise_odoo_19.7z ]; then
     
     # Move contents to addons folder
     mkdir -p $DESTINATION/enterprise_addons
-    mv $DESTINATION/temp/addons_enterprise_odoo_19/* enterprise_addons/
+    mv $DESTINATION/temp/addons_enterprise_odoo_19/* $DESTINATION/enterprise_addons/
 
     # Change ownership of enterprise_addons to the requested owner/group
     sudo chown -R $OWNER:$OWNER $DESTINATION/enterprise_addons
