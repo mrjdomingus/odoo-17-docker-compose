@@ -4,6 +4,8 @@ PORT=$2
 CHAT=$3
 OWNER=${4:-$(id -un)}
 
+echo "Value of variable OWNER is: $OWNER"
+
 # Clone Odoo directory
 git clone --branch odoo19 --depth=1 https://github.com/mrjdomingus/odoo-17-docker-compose $DESTINATION
 rm -rf $DESTINATION/.git
@@ -15,9 +17,9 @@ mkdir -p $DESTINATION/postgresql
 mkdir -p $DESTINATION/odoo_data
 
 # Check if the 7zip file with enterprise addons exists before extracting. If so, unzip it in folder enterprise_addons
-if [ -f ../addons_enterprise_odoo_19.7z ]; then
+if [ -f ./addons_enterprise_odoo_19.7z ]; then
     # Extract to a temp directory
-    7z x ../addons_enterprise_odoo_19.7z -o$DESTINATION/temp
+    7z x ./addons_enterprise_odoo_19.7z -o$DESTINATION/temp
     
     # Move contents to addons folder
     mkdir -p $DESTINATION/enterprise_addons
