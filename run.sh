@@ -13,7 +13,7 @@ mkdir -p $DESTINATION/postgresql
 # Create Odoo data directory
 mkdir -p $DESTINATION/odoo_data
 
-# Check if the file exists before extracting
+# Check if the 7zip file with enterprise addons exists before extracting. If so, unzip it in folder enterprise_addons
 if [ -f ../addons_enterprise_odoo_19.7z ]; then
     # Extract to a temp directory
     7z x ../addons_enterprise_odoo_19.7z -o./temp
