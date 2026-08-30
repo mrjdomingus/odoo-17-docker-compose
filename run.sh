@@ -70,6 +70,7 @@ fi
 echo "Set ports in docker-compose.yml completed..."
 
 # Set file and directory permissions after installation
+echo "Setting file and directory permissions after installation. THIS MAY TAKE CONSIDERABLE TIME!"
 find $DESTINATION -type f -exec chmod 644 {} \;
 find $DESTINATION -type d -exec chmod 755 {} \;
 echo "Set file and directory permissions after installation completed..."
